@@ -4,7 +4,7 @@ class Ingredient extends Component {
     render(){
         return(
             <div>
-                
+                <li>{this.props.ingredient}</li>
             </div>
         )
     }
