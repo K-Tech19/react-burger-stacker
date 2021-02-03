@@ -1,7 +1,6 @@
 import './App.css';
-import { render } from '@testing-library/react';
+import React, { Component } from 'react';
 
-function App() {
   let patty = "yummy"
   let ingredients = [
     {name: 'Kaiser Bun', color: 'saddlebrown'},
@@ -17,18 +16,19 @@ function App() {
     {name: 'Bacon', color: 'maroon'},
     {name: 'Onion', color: 'lightyellow'}
   ]
-  
-
-    return(
-      <div>
-        <h1>Welcome to Burger Shake</h1>
-        <h2>Today's order are fresh from the grill!!</h2>
-        <p>{ingredients.map((ingredient)=>{
-          return 
-        })}</p>
-      </div>
-    )
-
-}
+  class App extends Component {
+    render() {
+      return(
+        <div>
+          <h1>Welcome to Burger Shake</h1>
+          <h2>Today's order are fresh from the grill!!</h2>
+            <ul>
+              <li>ingredient list</li>
+              <li>ingredient list</li>
+            </ul>
+        </div>
+      )
+    }
+  }
 
 export default App;
