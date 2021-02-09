@@ -4,7 +4,10 @@ class Ingredient extends Component {
     render(){
         return(
             <div>
-                <li>{this.props.ingredient}</li>
+                <p style={{backgroundColor: this.props.color}} key={this.props.key}>
+                    {/* render individual ingredient */}
+                    {this.props.ingredient}
+                </p>
             </div>
         )
     }

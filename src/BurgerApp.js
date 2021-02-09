@@ -1,7 +1,8 @@
-import './App.css';
 import React, { Component } from 'react';
+import IngredientList from './IngredientList'
+import BurgerPane from './BurgerPane'
 
-  const patty = "yummy"
+
   const ingredients = [
     {name: 'Kaiser Bun', color: 'saddlebrown'},
     {name: 'Sesame Bun', color: 'sandybrown'},
@@ -17,20 +18,48 @@ import React, { Component } from 'react';
     {name: 'Onion', color: 'lightyellow'}
   ]
 
-  
-  class BurgerApp extends Component {
+
+  export default function BurgerApp() {
+
+    state = {
+      burgerIngredients: []
+    }
+
+    addToBurger = (e) =>{
+      let currentBurger = this.state.burgerIngredients
+      // create an object with name and color props that collects vals from 
+      let newIngredient = {name: e.target.innerText, color: e.target.style.backgroundColor}
+      //push object tro currentBurger
+          currentBurger.push(newIngredient)
+      
+
+      this.setState({
+        burgerIngredients: currentBurger
+      })
+    }
+
+    clearBurger = (e) =>{
+      this.setState({
+        burgerIngredients: []
+      })
+    }
+
     render() {
       return(
         <div>
           <h1>Welcome to Burger Shake</h1>
           <h2>Today's order are fresh from the grill!!</h2>
             <ul>
-              <li>ingredient list:{this.props.ingredients}</li>
+
               <li>ingredient list</li>
             </ul>
+            <div style={{display: "flex"}}>
+          <IngredientList ingredients={ingredients} addToBurger={this.addToBurger} />
+          <BurgerPane burgerIngredients={this.state.burgerIngredients} clearBurger={this.clearBurger}/>
+            </div>
         </div>
       )
     }
   }
 
-export default BurgerApp;
+
