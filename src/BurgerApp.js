@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import IngredientList from './IngredientList'
 import BurgerPane from './BurgerPane'
 
 
+
+
+
+export default function BurgerApp() {
+  
   const ingredients = [
     {name: 'Kaiser Bun', color: 'saddlebrown'},
     {name: 'Sesame Bun', color: 'sandybrown'},
@@ -17,49 +22,39 @@ import BurgerPane from './BurgerPane'
     {name: 'Bacon', color: 'maroon'},
     {name: 'Onion', color: 'lightyellow'}
   ]
+    const [burgerIngredients, setBurgerIngredients] = useState([])
 
 
-  export default function BurgerApp() {
-
-    state = {
-      burgerIngredients: []
-    }
-
-    addToBurger = (e) =>{
-      let currentBurger = this.state.burgerIngredients
-      // create an object with name and color props that collects vals from 
-      let newIngredient = {name: e.target.innerText, color: e.target.style.backgroundColor}
-      //push object tro currentBurger
-          currentBurger.push(newIngredient)
+    const addToBurger = (e) =>{
       
-
-      this.setState({
-        burgerIngredients: currentBurger
-      })
+      let newIngredient = {name: e.target.innerText, color: e.target.style.backgroundColor}
+      setBurgerIngredients([...burgerIngredients, newIngredient])
+      // let currentBurger = useState(burgerIngredients)
+      // // create an object with name and color props that collects vals from 
+      // //push object tro currentBurger
+      //     currentBurger.push(newIngredient)
+      
+      // this.setState({
+      //   burgerIngredients: currentBurger
+      // })
     }
 
-    clearBurger = (e) =>{
-      this.setState({
-        burgerIngredients: []
-      })
+    const clearBurger = (e) =>{
+      setBurgerIngredients([])
     }
-
-    render() {
       return(
         <div>
           <h1>Welcome to Burger Shake</h1>
           <h2>Today's order are fresh from the grill!!</h2>
             <ul>
-
               <li>ingredient list</li>
             </ul>
             <div style={{display: "flex"}}>
-          <IngredientList ingredients={ingredients} addToBurger={this.addToBurger} />
-          <BurgerPane burgerIngredients={this.state.burgerIngredients} clearBurger={this.clearBurger}/>
+          <IngredientList ingredients={ingredients} addToBurger={addToBurger} />
+          <BurgerPane burgerIngredients={burgerIngredients} clearBurger={clearBurger}/>
             </div>
         </div>
       )
-    }
   }
 
 
